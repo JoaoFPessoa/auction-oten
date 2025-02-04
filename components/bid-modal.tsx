@@ -26,10 +26,6 @@ export default function BidModal({
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Dados do formulário:", formData);
-    // Redirecionar para o site oficial do leiloeiro
-    if (typeof window !== "undefined") {
-      window.location.href = `https://leiloeiro-oficial.com/leilao/${auction.id}`;
-    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
