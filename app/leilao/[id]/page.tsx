@@ -21,8 +21,7 @@ export default async function AuctionDetailsPage({
 }: {
   params: { id: string };
 }) {
-  const { id } = await params;
-  const auction = await getAuctionDetails(Number(id));
+  const auction = await getAuctionDetails(Number(params.id));
   return (
     <div className="container mx-auto px-4 py-8 mb-12">
       <h1 className="text-4xl font-bold mb-8">{auction.title}</h1>
