@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 "use client";
 
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
@@ -7,49 +6,42 @@ import "leaflet/dist/leaflet.css";
 import { useRouter } from "next/navigation";
 import { Auction } from "@/types/auction";
 
-// Fix for default Leaflet icons missing in some environments
+// Fix Leaflet missing icon issue
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
 const DefaultIcon = L.icon({
   iconUrl: icon.src,
   shadowUrl: iconShadow.src,
-  iconSize: [25, 41], // size of the icon
-  iconAnchor: [12, 41], // point of the icon which will correspond to marker's location
-  popupAnchor: [1, -34], // point from which the popup should open relative to the iconAnchor
-  shadowSize: [41, 41], // size of the shadow
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
 });
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-export default function AuctionMap({ auctions }: { auctions: Auction[] }) {
+export default function AuctionMapClient({
+  auctions,
+}: {
+  auctions: Auction[];
+}) {
   const router = useRouter();
-
-  const greenIcon = L.icon({
-    iconUrl: "/marker-icon.png", // Ensure this file exists in the public directory
-    iconSize: [38, 38], // size of the icon
-    shadowAnchor: [4, 62], // the same for the shadow
-    popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
-  });
 
   return (
     <MapContainer
-      //@ts-ignore
       center={[-23.4551841, -46.8807891]}
       zoom={5}
       style={{ height: "600px", width: "100%" }}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        //@ts-ignore
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
       {auctions.map((auction) => (
         <Marker
           key={auction.id}
           position={[auction.latitude, auction.longitude]}
-          //@ts-ignore
-          icon={greenIcon}
           eventHandlers={{
             click: () => {
               router.push(`/leilao/${auction.id}`);
