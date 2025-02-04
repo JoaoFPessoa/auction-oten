@@ -7,21 +7,25 @@ import { Skeleton } from "@/components/ui/skeleton";
 import AuctionMap from "@/components/auction/auction-map";
 import { auctions } from "@/app/data/mockAuctionData";
 
-// Simule uma função para buscar os detalhes do leilão
+// Simulate a function to fetch auction details
 async function getAuctionDetails(id: number) {
   const auction = auctions.find((a) => a.id === id);
   if (!auction) {
-    notFound();
+    notFound(); // Render the 404 page if the auction is not found
   }
   return auction;
 }
 
-export default async function AuctionDetailsPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+// Define the type for the params object
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default async function AuctionDetailsPage({ params }: PageProps) {
   const auction = await getAuctionDetails(Number(params.id));
+
   return (
     <div className="container mx-auto px-4 py-8 mb-12">
       <h1 className="text-4xl font-bold mb-8">{auction.title}</h1>
@@ -34,6 +38,7 @@ export default async function AuctionDetailsPage({
               width={600}
               height={400}
               className="w-full rounded-lg"
+              priority // Add priority if this image is above the fold
             />
           </Suspense>
         </div>
@@ -52,7 +57,7 @@ export default async function AuctionDetailsPage({
               Fazer Lance
             </Button>
             <Link href="/" passHref>
-              <Button>Voltar para Lista</Button>
+              <Button variant="outline">Voltar para Lista</Button>
             </Link>
           </div>
         </div>
