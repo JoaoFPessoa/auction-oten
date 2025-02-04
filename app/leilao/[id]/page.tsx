@@ -1,6 +1,6 @@
 "use client"; // Mark this as a Client Component
 
-import { Suspense, useMemo } from "react";
+import { useMemo } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
