@@ -12,8 +12,10 @@ export default function Home() {
       <Suspense fallback={<Skeleton className="w-full h-96" />}>
         <AuctionList auctions={auctions} />
       </Suspense>
-      <h2 className="text-2xl font-bold mt-12 mb-4">Mapa de Leilões</h2>
-      <AuctionMap auctions={auctions} />
+      <h2 className="text-2xl max-w-7xl mx-auto font-bold mt-12 mb-4">
+        Mapa de Leilões
+        <AuctionMap auctions={auctions} />
+      </h2>
     </main>
   );
 }
