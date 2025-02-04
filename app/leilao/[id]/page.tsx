@@ -5,14 +5,13 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
+// import { Skeleton } from "@/components/ui/skeleton";
 import AuctionMap from "@/components/auction/auction-map";
-import { auctions } from "@/app/data/mockAuctionData";
+import { auctions } from "@/data/mockAuctionData";
 
 export default function AuctionDetailsPage() {
   const params = useParams<{ id: string }>();
   // const [loading, setLoading] = useState(true);
-  const loading = false;
 
   const auction = useMemo(
     () => auctions.find((a) => a.id === Number(params.id)) || null,
@@ -35,27 +34,27 @@ export default function AuctionDetailsPage() {
   //   }
   // }, [params.id]);
 
-  if (loading) {
-    return (
-      <div className="container mx-auto px-4 py-8 mb-12">
-        <Skeleton className="w-full h-12 mb-8" />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-          <Skeleton className="w-full h-[400px]" />
-          <div>
-            <Skeleton className="w-full h-8 mb-4" />
-            <Skeleton className="w-full h-6 mb-2" />
-            <Skeleton className="w-full h-6 mb-2" />
-            <Skeleton className="w-full h-6 mb-4" />
-            <div className="flex gap-4">
-              <Skeleton className="w-24 h-10" />
-              <Skeleton className="w-24 h-10" />
-            </div>
-          </div>
-        </div>
-        <Skeleton className="w-full h-[400px]" />
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="container mx-auto px-4 py-8 mb-12">
+  //       <Skeleton className="w-full h-12 mb-8" />
+  //       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+  //         <Skeleton className="w-full h-[400px]" />
+  //         <div>
+  //           <Skeleton className="w-full h-8 mb-4" />
+  //           <Skeleton className="w-full h-6 mb-2" />
+  //           <Skeleton className="w-full h-6 mb-2" />
+  //           <Skeleton className="w-full h-6 mb-4" />
+  //           <div className="flex gap-4">
+  //             <Skeleton className="w-24 h-10" />
+  //             <Skeleton className="w-24 h-10" />
+  //           </div>
+  //         </div>
+  //       </div>
+  //       <Skeleton className="w-full h-[400px]" />
+  //     </div>
+  //   );
+  // }
 
   if (!auction) {
     return (

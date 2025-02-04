@@ -3,7 +3,7 @@ import AuctionList from "@/components/auction/auction-list";
 import SearchFilter from "@/components/search-filter";
 import { Skeleton } from "@/components/ui/skeleton";
 import AuctionMap from "@/components/auction/auction-map";
-import { auctions } from "./data/mockAuctionData";
+import { auctions } from "../data/mockAuctionData";
 
 export default function Home() {
   return (
