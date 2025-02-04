@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 // import { Skeleton } from "@/components/ui/skeleton";
-import AuctionMap from "@/components/auction/auction-map";
 import { auctions } from "@/data/mockAuctionData";
 
 export default function AuctionDetailsPage() {
@@ -101,8 +100,6 @@ export default function AuctionDetailsPage() {
           </div>
         </div>
       </div>
-      <h2 className="text-2xl font-bold mb-4">Localização do Leilão</h2>
-      <AuctionMap auctions={[auction]} />
     </div>
   );
 }
