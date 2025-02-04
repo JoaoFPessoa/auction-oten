@@ -1,46 +1,86 @@
-import { Suspense } from "react";
+"use client"; // Mark this as a Client Component
+
+import { useMemo } from "react";
+import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import AuctionMap from "@/components/auction/auction-map";
 import { auctions } from "@/app/data/mockAuctionData";
 
-// Simulate a function to fetch auction details
-async function getAuctionDetails(id: number) {
-  const auction = auctions.find((a) => a.id === id);
-  if (!auction) {
-    notFound(); // Render the 404 page if the auction is not found
+export default function AuctionDetailsPage() {
+  const params = useParams<{ id: string }>();
+  // const [loading, setLoading] = useState(true);
+  const loading = false;
+
+  const auction = useMemo(
+    () => auctions.find((a) => a.id === Number(params.id)) || null,
+    [params.id]
+  );
+  // Fetch auction details on component mount
+
+  // useEffect(() => {
+  //   if (params.id) {
+  //     fetch(`/api/auctions/${params.id}`) // Replace with your API endpoint
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         setAuction(data);
+  //         setLoading(false);
+  //       })
+  //       .catch((error) => {
+  //         console.error("Failed to fetch auction details:", error);
+  //         setLoading(false);
+  //       });
+  //   }
+  // }, [params.id]);
+
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 py-8 mb-12">
+        <Skeleton className="w-full h-12 mb-8" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          <Skeleton className="w-full h-[400px]" />
+          <div>
+            <Skeleton className="w-full h-8 mb-4" />
+            <Skeleton className="w-full h-6 mb-2" />
+            <Skeleton className="w-full h-6 mb-2" />
+            <Skeleton className="w-full h-6 mb-4" />
+            <div className="flex gap-4">
+              <Skeleton className="w-24 h-10" />
+              <Skeleton className="w-24 h-10" />
+            </div>
+          </div>
+        </div>
+        <Skeleton className="w-full h-[400px]" />
+      </div>
+    );
   }
-  return auction;
-}
 
-// Define the type for the params object
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default async function AuctionDetailsPage({ params }: PageProps) {
-  const auction = await getAuctionDetails(Number(params.id));
+  if (!auction) {
+    return (
+      <div className="container mx-auto px-4 py-8 mb-12">
+        <h1 className="text-4xl font-bold mb-8">~Leilão não encontrado</h1>
+        <Link href="/" passHref>
+          <Button>Voltar para Lista</Button>
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-4 py-8 mb-12">
       <h1 className="text-4xl font-bold mb-8">{auction.title}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
         <div>
-          <Suspense fallback={<Skeleton className="w-full h-[400px]" />}>
-            <Image
-              src={auction.image || "/placeholder.svg"}
-              alt={auction.title}
-              width={600}
-              height={400}
-              className="w-full rounded-lg"
-              priority // Add priority if this image is above the fold
-            />
-          </Suspense>
+          <Image
+            src={auction.image || "/placeholder.svg"}
+            alt={auction.title}
+            width={600}
+            height={400}
+            className="w-full rounded-lg"
+            priority
+          />
         </div>
         <div>
           <p className="text-2xl font-semibold mb-4">
@@ -57,7 +97,7 @@ export default async function AuctionDetailsPage({ params }: PageProps) {
               Fazer Lance
             </Button>
             <Link href="/" passHref>
-              <Button variant="outline">Voltar para Lista</Button>
+              <Button>Voltar para Lista</Button>
             </Link>
           </div>
         </div>
