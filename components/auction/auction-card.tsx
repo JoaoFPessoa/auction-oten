@@ -31,9 +31,11 @@ export default function AuctionCard({
           className="w-full h-48 object-cover mb-4 rounded-md"
         />
         <p className="text-lg font-semibold">
-          Lance Atual: R$ {auction.currentBid.toLocaleString()}
+          Lance Atual: R$ {auction.currentBid.toLocaleString("pt-BR")}
         </p>
-        <p>Encerra em: {new Date(auction.endTime).toLocaleDateString()}</p>
+        <p>
+          Encerra em: {new Date(auction.endTime).toLocaleDateString("pt-BR")}
+        </p>
         <p>Localização: {auction.location}</p>
       </CardContent>
       <CardFooter className="flex justify-between">

@@ -102,9 +102,7 @@ export default function AuctionDetailsPage() {
         </div>
       </div>
       <h2 className="text-2xl font-bold mb-4">Localização do Leilão</h2>
-      <Suspense>
-        <AuctionMap auctions={[auction]} />
-      </Suspense>
+      <AuctionMap auctions={[auction]} />
     </div>
   );
 }

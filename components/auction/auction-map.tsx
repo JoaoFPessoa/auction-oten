@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 "use client";
 
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
@@ -26,7 +27,6 @@ export default function AuctionMap({ auctions }: { auctions: Auction[] }) {
 
   const greenIcon = L.icon({
     iconUrl: "/marker-icon.png", // Ensure this file exists in the public directory
-    shadowUrl: "/leaf-shadow.png", // Ensure this file exists in the public directory
     iconSize: [38, 38], // size of the icon
     shadowAnchor: [4, 62], // the same for the shadow
     popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
@@ -34,18 +34,21 @@ export default function AuctionMap({ auctions }: { auctions: Auction[] }) {
 
   return (
     <MapContainer
+      //@ts-ignore
       center={[-23.4551841, -46.8807891]}
       zoom={5}
       style={{ height: "600px", width: "100%" }}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        //@ts-ignore
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
       {auctions.map((auction) => (
         <Marker
           key={auction.id}
           position={[auction.latitude, auction.longitude]}
+          //@ts-ignore
           icon={greenIcon}
           eventHandlers={{
             click: () => {
