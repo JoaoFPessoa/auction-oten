@@ -1,12 +1,13 @@
 "use client"; // Mark this as a Client Component
 
-import { useMemo } from "react";
+import { Suspense, useMemo } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 // import { Skeleton } from "@/components/ui/skeleton";
 import { auctions } from "@/data/mockAuctionData";
+import AuctionMap from "@/components/auction/auction-map";
 
 export default function AuctionDetailsPage() {
   const params = useParams<{ id: string }>();
@@ -100,6 +101,10 @@ export default function AuctionDetailsPage() {
           </div>
         </div>
       </div>
+      <h2 className="text-2xl font-bold mb-4">Localização do Leilão</h2>
+      <Suspense>
+        <AuctionMap auctions={[auction]} />
+      </Suspense>
     </div>
   );
 }

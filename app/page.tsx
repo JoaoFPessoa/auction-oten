@@ -3,6 +3,7 @@ import AuctionList from "@/components/auction/auction-list";
 import SearchFilter from "@/components/search-filter";
 import { Skeleton } from "@/components/ui/skeleton";
 import { auctions } from "../data/mockAuctionData";
+import AuctionMap from "@/components/auction/auction-map";
 
 export default function Home() {
   return (
@@ -11,12 +12,12 @@ export default function Home() {
       <Suspense fallback={<Skeleton className="w-full h-96" />}>
         <AuctionList auctions={auctions} />
       </Suspense>
-      {/* <Suspense>
-        <h2 className="text-2xl max-w-7xl mx-auto font-bold mt-12 mb-4">
-          Mapa de Leilões
+      <Suspense>
+        <div className="max-w-7xl mx-auto mt-12 mb-4">
+          <h2 className="text-2xl font-bold">Mapa de Leilões</h2>
           <AuctionMap auctions={auctions} />
-        </h2>
-      </Suspense> */}
+        </div>
+      </Suspense>
     </main>
   );
 }
