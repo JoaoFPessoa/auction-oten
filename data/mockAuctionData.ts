@@ -1,136 +1,27 @@
-import { Auction } from "@/types/auction";
+export type RawPropertyData = {
+  id: number;
+  title: string;
+  appraisal_value: string;
+  minimum_value: string;
+  address: string;
+  image_url: string;
+};
 
-export const auctions: Auction[] = [
-  {
-    id: 1,
-    title: "Carro Antigo",
-    currentBid: 10000,
-    endTime: "2023-07-01",
-    image:
-      "https://cdn.motor1.com/images/mgl/VobQz/s1/10-carros-brasileiros-com-nomes-curiosos-no-exterior.webp",
-    latitude: -23.4551841,
-    longitude: -46.8807891,
-    location: "São Paulo",
-  },
-  {
-    id: 2,
-    title: "Obra de Arte",
-    currentBid: 5000,
-    endTime: "2023-06-30",
-    image:
-      "https://cdn.motor1.com/images/mgl/VobQz/s1/10-carros-brasileiros-com-nomes-curiosos-no-exterior.webp",
-    latitude: -22.9068,
-    longitude: -43.1729,
-    location: "Rio de Janeiro",
-  },
-  {
-    id: 3,
-    title: "Imóvel",
-    currentBid: 200000,
-    endTime: "2023-07-15",
-    image:
-      "https://cdn.motor1.com/images/mgl/VobQz/s1/10-carros-brasileiros-com-nomes-curiosos-no-exterior.webp",
-    latitude: -19.9167,
-    longitude: -43.9345,
-    location: "Belo Horizonte",
-  },
-  {
-    id: 4,
-    title: "Carro Antigo",
-    currentBid: 10000,
-    endTime: "2023-07-01",
-    image:
-      "https://cdn.motor1.com/images/mgl/VobQz/s1/10-carros-brasileiros-com-nomes-curiosos-no-exterior.webp",
-    latitude: -23.5505,
-    longitude: -46.6333,
-    location: "São Paulo",
-  },
-  {
-    id: 5,
-    title: "Obra de Arte",
-    currentBid: 5000,
-    endTime: "2023-06-30",
-    image:
-      "https://cdn.motor1.com/images/mgl/VobQz/s1/10-carros-brasileiros-com-nomes-curiosos-no-exterior.webp",
-    latitude: -22.9068,
-    longitude: -43.1729,
-    location: "Rio de Janeiro",
-  },
-  {
-    id: 6,
-    title: "Imóvel",
-    currentBid: 200000,
-    endTime: "2023-07-15",
-    image:
-      "https://cdn.motor1.com/images/mgl/VobQz/s1/10-carros-brasileiros-com-nomes-curiosos-no-exterior.webp",
-    latitude: -19.9167,
-    longitude: -43.9345,
-    location: "Belo Horizonte",
-  },
-  {
-    id: 7,
-    title: "Carro Antigo",
-    currentBid: 10000,
-    endTime: "2023-07-01",
-    image:
-      "https://cdn.motor1.com/images/mgl/VobQz/s1/10-carros-brasileiros-com-nomes-curiosos-no-exterior.webp",
-    latitude: -23.5505,
-    longitude: -46.6333,
-    location: "São Paulo",
-  },
-  {
-    id: 8,
-    title: "Obra de Arte",
-    currentBid: 5000,
-    endTime: "2023-06-30",
-    image:
-      "https://cdn.motor1.com/images/mgl/VobQz/s1/10-carros-brasileiros-com-nomes-curiosos-no-exterior.webp",
-    latitude: -22.9068,
-    longitude: -43.1729,
-    location: "Rio de Janeiro",
-  },
-  {
-    id: 9,
-    title: "Imóvel",
-    currentBid: 200000,
-    endTime: "2023-07-15",
-    image:
-      "https://cdn.motor1.com/images/mgl/VobQz/s1/10-carros-brasileiros-com-nomes-curiosos-no-exterior.webp",
-    latitude: -19.9167,
-    longitude: -43.9345,
-    location: "Belo Horizonte",
-  },
-  {
-    id: 10,
-    title: "Carro Antigo",
-    currentBid: 10000,
-    endTime: "2023-07-01",
-    image:
-      "https://cdn.motor1.com/images/mgl/VobQz/s1/10-carros-brasileiros-com-nomes-curiosos-no-exterior.webp",
-    latitude: -23.5505,
-    longitude: -46.6333,
-    location: "São Paulo",
-  },
-  {
-    id: 11,
-    title: "Obra de Arte",
-    currentBid: 5000,
-    endTime: "2023-06-30",
-    image:
-      "https://cdn.motor1.com/images/mgl/VobQz/s1/10-carros-brasileiros-com-nomes-curiosos-no-exterior.webp",
-    latitude: -22.9068,
-    longitude: -43.1729,
-    location: "Rio de Janeiro",
-  },
-  {
-    id: 12,
-    title: "Imóvel",
-    currentBid: 200000,
-    endTime: "2023-07-15",
-    image:
-      "https://cdn.motor1.com/images/mgl/VobQz/s1/10-carros-brasileiros-com-nomes-curiosos-no-exterior.webp",
-    latitude: -19.9167,
-    longitude: -43.9345,
-    location: "Belo Horizonte",
-  },
+export const propertyData: RawPropertyData[] = [
+  ...Array.from({ length: 20 }, (_, index) => ({
+    id: index + 1,
+    title: `CHACARA ${index + 1}`,
+    appraisal_value: `CHACARA ${index + 1}`,
+    minimum_value: `Valor de avaliação: R$${
+      (index + 1) * 1000000
+    },00\nValor mínimo de venda: R$605.448,59 (  descontro de 36,27%)`,
+    address: `Casa - ${index + 4} quarto(s), ${
+      index + 1
+    } vaga(s) na garagem - Venda Online\nNúmero do imóvel: ${index + 1}${
+      index + 1
+    }${index + 1}${index + 1}-2\nRUA ${index}, N. ${
+      index + 4
+    } .\n Despesas do imóvel sob responsabilidade do comprador: Tributos inferiores a R$1.000,00 (mil reais)`,
+    image_url: "https://venda-imoveis.caixa.gov.br/fotos/F144441755964221.jpg",
+  })),
 ];

@@ -7,9 +7,10 @@ import { Menu, X } from "lucide-react";
 
 const navItems = [
   { href: "/", label: "Início" },
-  { href: "/leiloes", label: "Leilões" },
+  { href: "/leilao", label: "Leilões" },
   { href: "/como-funciona", label: "Como Funciona" },
   { href: "/contato", label: "Contato" },
+  { href: "/login", label: "Entrar" },
 ];
 
 export function Navbar() {
@@ -37,6 +38,9 @@ export function Navbar() {
                     pathname === item.href
                       ? "bg-gray-900 text-white"
                       : "text-gray-700 hover:bg-gray-700 hover:text-white"
+                  } ${
+                    item.label === "Entrar" &&
+                    "!bg-[var(--primary)] text-white hover:opacity-80 hover:bg-[var(--primary)]"
                   }`}
                 >
                   {item.label}

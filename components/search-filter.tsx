@@ -64,7 +64,9 @@ export default function SearchFilter() {
           {/* Adicione mais localizações conforme necessário */}
         </SelectContent>
       </Select>
-      <Button type="submit">Buscar</Button>
+      <Button variant={"primary"} type="submit">
+        Buscar
+      </Button>
     </form>
   );
 }
