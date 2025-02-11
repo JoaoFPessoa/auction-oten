@@ -13,6 +13,8 @@
     --background: #0a0a0a;
     --primary: rgb(50, 210, 164);
     --foreground: #ededed;
+    --destructive: #dc2626;
+    --destructive-foreground: #fff;
   }
 }
 
