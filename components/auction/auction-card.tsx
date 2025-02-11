@@ -8,13 +8,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Auction } from "@/types/auction";
+import { PropertyData } from "@/types/auction";
 
 export default function AuctionCard({
   auction,
   onBid,
 }: {
-  auction: Auction;
+  auction: PropertyData;
   onBid: () => void;
 }) {
   return (
@@ -24,25 +24,26 @@ export default function AuctionCard({
       </CardHeader>
       <CardContent>
         <Image
-          src={auction.image || "/placeholder.svg"}
+          src={auction.image_url || "/placeholder.svg"}
           alt={auction.title}
           width={300}
           height={200}
           className="w-full h-48 object-cover mb-4 rounded-md"
         />
         <p className="text-lg font-semibold">
-          Lance Atual: R$ {auction.currentBid.toLocaleString("pt-BR")}
+          Valor de avaliação: R${" "}
+          {auction.appraisal_value.toLocaleString("pt-BR")}
         </p>
         <p>
-          Encerra em: {new Date(auction.endTime).toLocaleDateString("pt-BR")}
+          Valor mínimo de venda: R${" "}
+          {auction.minimum_value.toLocaleString("pt-BR")}
         </p>
-        <p>Localização: {auction.location}</p>
+        <p>
+          Localização: {auction.address.street}, {auction.address.number}
+        </p>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button
-          className="bg-[var(--primary)] text-white font-bold"
-          onClick={onBid}
-        >
+        <Button variant={"primary"} onClick={onBid}>
           Fazer Lance
         </Button>
         <Link href={`/leilao/${auction.id}`} passHref>
