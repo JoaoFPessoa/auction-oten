@@ -1,14 +1,14 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { Auction } from "@/types/auction";
+import { PropertyData } from "@/types/auction";
 import { useEffect, useState } from "react";
 
 const LeafletMap = dynamic(() => import("./map-client"), {
   ssr: false,
 });
 
-export default function AuctionMap({ auctions }: { auctions: Auction[] }) {
+export default function AuctionMap({ auctions }: { auctions: PropertyData[] }) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
